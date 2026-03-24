@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未来シミュレーション | Future Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="container">
+        
+        <header class="main-header">
+            <div class="title-wrapper">
+                <span class="subtitle">AI-Powered Financial Projection</span>
+                <h1>未来予測シミュレータ</h1>
+            </div>
+            <p>入力した資産とライフイベントから、数年先の家計をスマートに予測します。</p>
+        </header>
+
+        <section class="panel">
+            <h2>現在のデータ</h2>
+            <div class="inputs-grid">
+                <div class="input-group">
+                    <label for="income">月収</label>
+                    <input type="number" id="income" placeholder="例: 440000" step="10000">
+                </div>
+                <div class="input-group">
+                    <label for="expenses">月支出</label>
+                    <input type="number" id="expenses" placeholder="例: 200000" step="10000">
+                </div>
+                <div class="input-group">
+                    <label for="savings">現在の貯金額</label>
+                    <input type="number" id="savings" placeholder="例: 1000000" step="100000">
+                </div>
+                <div class="input-group">
+                    <label for="yield">貯蓄率 / 年利 (%)</label>
+                    <input type="number" id="yield" placeholder="例: 3" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label for="past-months">過去期間 (月)</label>
+                    <input type="number" id="past-months" value="12" min="0" max="120">
+                </div>
+                <div class="input-group">
+                    <label for="future-months">未来期間 (月)</label>
+                    <input type="number" id="future-months" value="12" min="1" max="600">
+                </div>
+            </div>
+            <div class="btn-container">
+                <button id="calc-btn" class="primary-btn">計算する</button>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>予定支出</h2>
+            <div class="add-expense-form">
+                <input type="text" id="expense-name" placeholder="イベント名 (例: 海外旅行)">
+                <input type="date" id="expense-date">
+                <input type="number" id="expense-amount" placeholder="金額 (円)" step="10000">
+                <button id="add-expense-btn" class="primary-btn black-btn">＋ 支出を追加</button>
+            </div>
+            <ul id="expense-list" class="expense-list"></ul>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <h2>シミュレーション結果</h2>
+                <button id="open-chat-btn" class="ghost-btn">✨ AIアドバイス</button>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="simulationChart"></canvas>
+            </div>
+
+            <div class="summary-cards">
+                <div class="summary-card final-balance">
+                    <span class="card-label">最終残高</span>
+                    <span class="card-value" id="val-final">¥0</span>
+                </div>
+                <div class="summary-card cumulative-savings">
+                    <span class="card-label">累積貯蓄</span>
+                    <span class="card-value" id="val-cumulative">¥0</span>
+                </div>
+                <div class="summary-card monthly-balance">
+                    <span class="card-label">月収支</span>
+                    <span class="card-value" id="val-monthly">¥0</span>
+                </div>
+                <div class="summary-card savings-rate">
+                    <span class="card-label">貯蓄率</span>
+                    <span class="card-value" id="val-rate">0%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Chat Modal -->
+        <div id="ai-chat-modal" class="modal-overlay hidden">
+            <div class="chat-container-panel">
+                <div class="chat-header">
+                    <h3>✨ AI アドバイザー</h3>
+                    <button id="close-chat-btn" class="close-btn">&times;</button>
+                </div>
+                <div id="chat-messages" class="chat-messages">
+                    <!-- Messages go here -->
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="AIに質問する...">
+                    <button id="send-chat-btn" class="primary-btn black-btn">送信</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
