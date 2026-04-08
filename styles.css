@@ -442,3 +442,44 @@ button {
 .instructions-list li:last-child {
   margin-bottom: 0;
 }
+
+/* Footer Links */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--text-main);
+  text-decoration: underline;
+}
+
+/* Explanation Panel */
+.explanation-panel {
+  background: var(--bg-panel);
+}
+
+.explanation-content h3 {
+  font-size: 1.1rem;
+  color: #111827;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 8px;
+}
+
+.explanation-content p {
+  line-height: 1.8;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
